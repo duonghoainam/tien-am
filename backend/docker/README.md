@@ -1,6 +1,6 @@
 # docker Folder
 
-This directory is used to store Dockerfile. 
+This directory is used to store Dockerfile.
 
 Create new Dockerfile here.
 
@@ -12,8 +12,8 @@ Dockerfile names must begin with the Dockerfile prefix and end with tag name.
 
 ## Example
 
-- `Dockerfile`
+- `docker/Dockerfile`
 
-- `Dockerfile.dev`
+- `docker/Dockerfile.dev`
 
-- `Dockerfile.prod`
+- `docker/Dockerfile.prod`
