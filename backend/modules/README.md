@@ -8,7 +8,6 @@ A typical use-case will have a template as follows:
 - `service`: Process data, interact with the database.
 - `model`: Define Entity schema.
 - `route`: Define API route and API document.
-- `api-doc` (Optional): Define API spec document.
 - `test` (Optional): Create test case here.
 - `dto` (Optional): Validate API payload, response,...
 - `enum` (Optional): Define Enum Variable.
@@ -144,10 +143,6 @@ router.route('/<<use-case_name_plural>>')
   .post(controller.create)
 ```
 
-### Api-doc
-
-TODO
-
 ### Test
 
 TODO
@@ -192,7 +187,6 @@ Inside user use-case:
 - `modules/user/user.service.js`
 - `modules/user/user.model.js`
 - `modules/user/user.route.js`
-- `modules/user/user.api-doc.js`
 - etc.
 
 Now, import user route into `index.js` file:

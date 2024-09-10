@@ -1,7 +1,12 @@
 const logger = require("./winston");
 const app = require("./express");
 const { connectToDatabase } = require("./mongoose");
+const { swaggerUi, swaggerOutputFile } = require("./swagger-ui-express");
 
-exports.logger = logger;
-exports.app = app;
-exports.connectToDatabase = connectToDatabase;
+module.exports = {
+  logger,
+  app,
+  connectToDatabase,
+  swaggerUi,
+  swaggerOutputFile
+}

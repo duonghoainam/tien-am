@@ -1,5 +1,8 @@
 const userRouter = require("./user/user.route");
+const express = require('express');
 
-module.exports = {
-  userRouter
-}
+const subApp = express();
+
+subApp.use(userRouter);
+
+module.exports = subApp;
