@@ -2,6 +2,16 @@ const mongoose = require("mongoose");
 const config = require('../config');
 const logger = require("./winston");
 
+
+/**
+ * Connects to the MongoDB database using the URI and database name specified in the configuration.
+ *
+ * This function attempts to connect to MongoDB and logs the connection status.
+ *
+ * @async
+ * @returns {Promise<void>} A promise that resolves when the connection attempt is complete. The promise does not return any value.
+ * @throws {Error} Throws an error if the connection to MongoDB fails. The error will be logged.
+ */
 async function connectToDatabase() {
   try {
     logger.info("Try to connect to MongoDB URI: " + config.appEnv.MONGODB_URI)
