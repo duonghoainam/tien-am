@@ -7,10 +7,11 @@ module.exports = {
     NODE_ENV: process.env.NODE_ENV || "development",
     MONGODB_URI: process.env.MONGODB_URI || "mongodb://root:example@127.0.0.1:27017",
     DB_NAME: process.env.DB_NAME || "tinyin",
-    DEFAULT_SKIP: parseInt(process.env.DEFAULT_SKIP, 10) || 0,
-    DEFAULT_LIMIT: parseInt(process.env.DEFAULT_LIMIT, 10) || 20
+    DEFAULT_PAGE: parseInt(process.env.DEFAULT_PAGE, 10) || 1,
+    DEFAULT_SIZE: parseInt(process.env.DEFAULT_SIZE, 10) || 20
   },
   auth: {
-    secret: process.env.SECRET_KEY
+    SALT_ROUNDS: parseInt(process.env.SALT_ROUNDS, 10) || 10,
+    SECRET_KEY: process.env.SECRET_KEY,
   }
 }
