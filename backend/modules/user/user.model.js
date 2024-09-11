@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { SocialEnum } = require('./user.enum');
+const { SocialEnum, GenderEnum } = require('./user.enum');
 const { Schema } = mongoose;
 
 const featureNestedSchema = new Schema(
@@ -18,7 +18,7 @@ const socialProfileNestedSchema = new Schema(
       type: String,
       enum: {
         values: Object.values(SocialEnum),
-        message: '{VALUE} is not supported',
+        message: 'Social type {VALUE} is not supported',
       },
     },
     email: {
@@ -54,6 +54,16 @@ const userSchema = new Schema(
     email: {
       type: String,
     },
+    gender: {
+      type: String,
+      enum: {
+        values: Object.values(GenderEnum),
+        message: 'Gender {VALUE} is not supported',
+      },
+    },
+    country: {
+      type: String,
+    },
     hashedPassword: {
       type: String,
       required: true,
@@ -81,6 +91,8 @@ const userSchema = new Schema(
     timestamps: true,
   }
 );
+
+userSchema.statics.excludeFields = ["-hashedPassword"]
 
 const User = mongoose.model('User', userSchema);
 

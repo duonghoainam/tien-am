@@ -51,6 +51,8 @@ app.use(<<use-case_name>>Router);
 module.exports = app;
 ```
 
+**We have a directory named `base` inside the `modules`, which contains functions/modules that can be reused for other use cases. You should check whether the feature you are about to work on needs to use these features to avoid creating duplicate code.**
+
 ### Controller
 
 By default, each function of the controller takes `request`, `response` and `next` as input,
@@ -130,7 +132,8 @@ module.exports = <<Entity>>;
 
 Define the possible routes here. Add middleware and controller handler functions to the corresponding routes.
 
-Routes must adhere to **RESTful API** standards.
+Routes must adhere to **OpenAPI** standards.
+Because we use [Swagger Autogen](https://github.com/swagger-autogen/swagger-autogen) to automatically read the existing routes in Express and generate the Swagger UI.
 
 ```js
 const { Router } = require('express');
@@ -139,7 +142,23 @@ const controller = require('./<<use-case_name>>.controller');
 const router = Router()
 
 router.route('/<<use-case_name_plural>>')
-  .get(controller.get)
+  .get((req, res, next) => {
+    /* #swagger.responses[200] = {
+        content: {
+          "application/json": {
+            schema: {
+              type: "array",
+              items: {
+                type: "object",
+                $ref: "#/components/schemas/<<use-case_name>>Response"
+              }
+            }
+          }
+        }
+      }
+    */
+    next();
+  }, controller.get)
   .post(controller.create)
 ```
 
@@ -149,7 +168,40 @@ TODO
 
 ### DTO
 
-TODO
+This is where we define some data structures using [Joi](https://joi.dev/api/?v=17.13.3).
+We use it to validate and specify the structure of the request body and response model of the API.
+
+Additionally, we will get support from [joi-to-swagger](https://github.com/Twipped/joi-to-swagger)
+and [Swagger Autogen](https://github.com/swagger-autogen/swagger-autogen) to automatically generate schemas in Swagger.
+However, it's not omnipotent; you need to name variables correctly so that the system can detect them and include them in Swagger.
+
+There will be 5 main sections in this file.
+
+1. Path Parameter: define and export path parameter schema.
+2. Query Parameter: define and export query parameter schema.
+3. Body: define and export request body schema.
+4. Response: define and export response schema.
+5. Exports: export all schemas.
+
+
+The variable naming rules will follow as below:
+
+- `<<use-case>>Param`: path parameter schema. Actually, Swagger Autogen automatically adds the corresponding path parameters when we define them on the router.
+Therefore, here we only need to define the schema to validate the input data.
+- `<<use-case>>Query`: query parameter schema. The corresponding Swagger variable name is `<<use-case>>QuerySwagger`.
+- `<<use-case>>Body`: request body schema. The corresponding Swagger variable name is `<<use-case>>BodySwagger`.
+- `<<use-case>>Response`: response schema. This is only used to represent the response structure of the API. The corresponding Swagger variable name is `<<use-case>>ResponseSwagger`.
+
+If you have a variable that needs to break this naming convention,
+please discuss it with your Team Leader/Manager to get guidance,
+and provide thorough documentation using [JSDoc](https://jsdoc.app/howto-commonjs-modules).
+
+```js
+const <<use-case>>Response = joi.object().keys({
+  _id: joi.string().required(),
+});
+const { swagger: <<use-case>>ResponseSwagger } = j2s(<<use-case>>Response);
+```
 
 ### Enum
 
@@ -186,6 +238,7 @@ Inside user use-case:
 - `modules/user/user.controller.js`
 - `modules/user/user.service.js`
 - `modules/user/user.model.js`
+- `modules/user/user.dto.js`
 - `modules/user/user.route.js`
 - etc.
 

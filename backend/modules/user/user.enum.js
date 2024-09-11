@@ -4,6 +4,13 @@ const SocialEnum = Object.freeze({
   APPLE: 'apple'
 });
 
+const GenderEnum = Object.freeze({
+  MALE: 'male',
+  FEMALE: 'female',
+  OTHER: 'other'
+});
+
 module.exports = {
-  SocialEnum
+  SocialEnum,
+  GenderEnum
 }
