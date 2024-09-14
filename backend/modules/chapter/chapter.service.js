@@ -11,7 +11,7 @@ const config = require('../../config');
  * @param {number} [size=config.appEnv.DEFAULT_SIZE]
  * @returns {Promise<{count: number, chapters: Chapter[]}>}
  */
-async function getChaptersInBook(
+async function getChapters(
   search,
   audioBookId,
   page = config.appEnv.DEFAULT_PAGE,
@@ -95,3 +95,33 @@ async function updateChapter(
   });
   return updateChapter;
 }
+
+/**
+ * Get a chapter by id
+ *
+ * @async
+ * @param {string} id
+ * @returns {Promise<void>}
+ */
+async function getChapterById(id) {
+  return await Chapter.findById(id);
+}
+
+/**
+ * Delete chapter
+ *
+ * @async
+ * @param {string} id
+ * @returns {Promise<void>}
+ */
+async function deleteChapter(id) {
+  return await Chapter.deleteOne({ _id: id });
+}
+
+module.exports = {
+  getChapters,
+  createChapter,
+  getChapterById,
+  updateChapter,
+  deleteChapter,
+};

@@ -34,8 +34,8 @@ const { swagger: ChapterUpdateBodySwagger } = j2s(ChapterUpdateBody);
 //#region ---------- Response ----------
 const ChapterResponse = ChapterUpdateBody.append({
   _id: joi.string().required(),
-  updatedAt: joi.date(),
-  createdAt: joi.date(),
+  updatedAt: joi.date().required(),
+  createdAt: joi.date().required(),
 });
 const { swagger: ChapterResponseSwagger } = j2s(ChapterResponse);
 
