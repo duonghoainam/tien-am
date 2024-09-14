@@ -1,5 +1,8 @@
-const express = require('express');
+const { app, swaggerUi, swaggerOutputFile } = require('./lib');
+const subApp = require('./modules');
+const swaggerDocument = require(swaggerOutputFile);
 
-const app = express();
+app.use('/api/v1', subApp);
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 module.exports = app;
