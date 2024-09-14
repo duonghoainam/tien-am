@@ -1,11 +1,12 @@
-import { Router } from 'express';
-import * as controller from './user.controller.js';
+const { Router } = require('express');
+const controller = require('./author.controller');
 
-const router = Router()
+const router = Router();
 
-router.route('/users')
+router
+  .route('/authors')
   .get((req, res, next) => {
-    /* #swagger.tags = ['User'] */
+    /* #swagger.tags = ['Author'] */
     /* #swagger.parameters['$ref'] = [
       '#/components/parameters/BaseQuerySearch',
       '#/components/parameters/BaseQueryPage',
@@ -19,7 +20,7 @@ router.route('/users')
               type: "object",
               properties: {
                 data: {
-                  $ref: "#/components/schemas/UserListResponse"
+                  $ref: "#/components/schemas/AuthorListResponse"
                 }
               }
             }
@@ -27,15 +28,15 @@ router.route('/users')
         }
     } */
     next();
-  }, controller.getUsersHandler)
+  }, controller.getAuthorsHandler)
   .post((req, res, next) => {
-    /* #swagger.tags = ['User'] */
+    /* #swagger.tags = ['Author'] */
     /*  #swagger.requestBody = {
         required: true,
         content: {
           "application/json": {
             schema: {
-              $ref: "#/components/schemas/UserCreateBody"
+              $ref: "#/components/schemas/AuthorCreateBody"
             }
           }
         }
@@ -45,38 +46,39 @@ router.route('/users')
         content: {
           "application/json": {
             schema: {
-              $ref: "#/components/schemas/UserResponse"
+              $ref: "#/components/schemas/AuthorResponse"
             }
           }
         }
       }
     */
     next();
-  }, controller.createUsersHandler)
+  }, controller.createAuthorHandler);
 
-router.route('/users/:id')
+router
+  .route('/authors/:id')
   .get((req, res, next) => {
-    /* #swagger.tags = ['User'] */
+    /* #swagger.tags = ['Author'] */
     /* #swagger.responses[200] = {
         content: {
           "application/json": {
             schema: {
-              $ref: "#/components/schemas/UserResponse"
+              $ref: "#/components/schemas/AuthorResponse"
             }
           }
         }
       }
     */
     next();
-  }, controller.getUserByIdHandler)
+  }, controller.getAuthorByIdHandler)
   .patch((req, res, next) => {
-    /* #swagger.tags = ['User'] */
+    /* #swagger.tags = ['Author'] */
     /*  #swagger.requestBody = {
         required: true,
         content: {
           "application/json": {
             schema: {
-                $ref: "#/components/schemas/UserUpdateBody"
+                $ref: "#/components/schemas/AuthorUpdateBody"
             }
           }
         }
@@ -86,16 +88,16 @@ router.route('/users/:id')
         content: {
           "application/json": {
             schema: {
-              $ref: "#/components/schemas/UserResponse"
+              $ref: "#/components/schemas/AuthorResponse"
             }
           }
         }
       }
     */
     next();
-  }, controller.updateUsersHandler)
+  }, controller.updateAuthorHandler)
   .delete((req, res, next) => {
-    /* #swagger.tags = ['User'] */
+    /* #swagger.tags = ['Author'] */
     /* #swagger.responses[200] = {
         content: {
           "application/json": {
@@ -107,6 +109,6 @@ router.route('/users/:id')
       }
     */
     next();
-  }, controller.deleteUsersHandler)
+  }, controller.deleteAuthorHandler);
 
-export default router;
+module.exports = router;
