@@ -110,10 +110,11 @@ async function deleteAuthorHandler(req, res, next) {
     if (error)
       return res.status(422).json({ message: error.details[0].message });
 
-    const user = await service.getUserById(id, true);
-    if (!user) return res.status(404).json({ message: 'User not found!' });
+    const author = await authorService.getAuthorById(id);
+    if (!author)
+      return res.status(404).json({ message: `Author not found: id=${id}` });
 
-    await service.deleteUser(id);
+    await authorService.deleteAuthor(id);
 
     return res.status(200).json({ message: 'Success' });
   } catch (error) {
