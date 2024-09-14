@@ -17,6 +17,20 @@ const swaggerOptions = {
       description: 'Local Environment',
     },
   ],
+  tags: [
+    {
+      name: 'User',
+      description: 'API endpoints related to users',
+    },
+    {
+      name: 'Author',
+      description: 'API endpoints related to authors',
+    },
+    {
+      name: 'Chapter',
+      description: 'API endpoints related to chapters',
+    },
+  ],
   components: {
     securitySchemes: {
       bearerAuth: {

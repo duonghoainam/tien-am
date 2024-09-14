@@ -6,6 +6,7 @@ const router = Router();
 router
   .route('/chapters')
   .get((req, res, next) => {
+    /* #swagger.tags = ['Chapter'] */
     /* #swagger.parameters['$ref'] = [
       '#/components/parameters/ChapterQuerySearch',
       '#/components/parameters/ChapterQueryPage',
@@ -30,6 +31,7 @@ router
     next();
   }, chapterController.getChaptersHandler)
   .post((req, res, next) => {
+    /* #swagger.tags = ['Chapter'] */
     /*  #swagger.requestBody = {
         required: true,
         content: {
@@ -57,6 +59,7 @@ router
 router
   .route('/chapters/:id')
   .get((req, res, next) => {
+    /* #swagger.tags = ['Chapter'] */
     /* #swagger.responses[200] = {
         content: {
           "application/json": {
@@ -70,6 +73,7 @@ router
     next();
   }, chapterController.getChapterByIdHandler)
   .patch((req, res, next) => {
+    /* #swagger.tags = ['Chapter'] */
     /*  #swagger.requestBody = {
         required: true,
         content: {
@@ -94,6 +98,7 @@ router
     next();
   }, chapterController.updateChapterHandler)
   .delete((req, res, next) => {
+    /* #swagger.tags = ['Chapter'] */
     /* #swagger.responses[200] = {
         content: {
           "application/json": {
