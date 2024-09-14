@@ -1,7 +1,12 @@
-const User = require('./user.model');
-const config = require('../../config');
-const { hashText } = require('../../lib');
-const { normalizeEmail } = require('../../utils/emailUtils');
+import User from './user.model.js';
+import config from '../../config/index.js';
+import { hashLib } from '../../lib/index.js';
+import { normalizeEmail } from '../../utils/emailUtils.js';
+
+// const User = require('./user.model');
+// const config = require('../../config');
+// const { hashText } = require('../../lib');
+// const { normalizeEmail } = require('../../utils/emailUtils');
 
 /**
  * Get list users
@@ -44,7 +49,7 @@ async function getUsers(
  * @returns {Promise<User>}
  */
 async function createUser(fullName, username, password, isActive) {
-  const hashedPassword = await hashText(password);
+  const hashedPassword = await hashLib.hashText(password);
   const normalizedEmail = normalizeEmail(username);
 
   const user = await User.create({
@@ -128,7 +133,7 @@ async function deleteUser(id) {
   return await User.deleteOne({ _id: id });
 }
 
-module.exports = {
+export {
   getUsers,
   createUser,
   getUserById,

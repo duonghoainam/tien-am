@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const { SocialEnum, GenderEnum } = require('./user.enum');
+import mongoose from 'mongoose';
+import { SocialEnum, GenderEnum } from './user.enum.js';
 const { Schema } = mongoose;
 
 const featureNestedSchema = new Schema(
@@ -92,8 +92,8 @@ const userSchema = new Schema(
   }
 );
 
-userSchema.statics.excludeFields = ["-hashedPassword"]
+userSchema.statics.excludeFields = ['-hashedPassword'];
 
 const User = mongoose.model('User', userSchema);
 
-module.exports = User;
+export default User;

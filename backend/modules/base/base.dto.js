@@ -1,6 +1,10 @@
-const joi = require('joi');
-const j2s = require('joi-to-swagger');
-const config = require('../../config');
+import joi from 'joi';
+import j2s from 'joi-to-swagger';
+import config from '../../config/index.js';
+
+// const joi = require('joi');
+// const j2s = require('joi-to-swagger');
+// const config = require('../../config');
 
 //#region ---------- Path Parameter ----------
 const BaseParam = joi.object().keys({
@@ -41,7 +45,7 @@ const { swagger: BaseMessageResponseSwagger } = j2s(BaseMessageResponse);
 //#endregion
 
 //#region ---------- Exports ----------
-module.exports = {
+export {
   BaseParam,
 
   BaseQuery,

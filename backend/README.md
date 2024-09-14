@@ -8,6 +8,7 @@ The backend of Tiên Âm uses the following technologies:
 
 - **Nodemon**: 3.1.4 or higher — for automatic server restarts during development.
 - **ExpressJS**: 4.19.2 or higher — a fast, unopinionated web framework for Node.js.
+- **AdminJS**: 7.8.12 or higher — an open-source admin panel for Node.js.
 - **MongoDB**: 7.0.12 or higher — a highly scalable NoSQL database.
 - **Mongoose**: 8.6.1 or higher — an elegant MongoDB object modeling tool.
 - **Joi**: 17.13.3 or higher — for schema validation.
@@ -71,7 +72,7 @@ Automatically collect routes and schemas in the application to generate configur
 npm run swagger
 ```
 
-Check `./dist/swagger-output.json`.
+Check the `./dist/swagger-output.json` file to review the generated OpenAPI configuration, and inspect each use-case route in the `modules` to see how the automatically generated components are being used.
 
 ### Logging
 
@@ -84,3 +85,9 @@ Check `./log/combine.log` and `./log/error.log`.
 The project follows a use-case-based structure, organizing code by specific features and functionalities. This approach enhances code readability, maintainability, and scalability, making it easier for developers to navigate and contribute to the project. Reusable modules are placed in a dedicated `base` folder to prevent code duplication and promote clean coding practices.
 
 Check `./modules` directory.
+
+### Integrate the Admin Panel
+
+The integration of the Admin Panel enhances the ability to quickly manage and configure system resources. This feature focuses on providing an intuitive and efficient interface for administrators to monitor and control various aspects of the application. Additionally, since the Admin Panel is built from an open-source library with high customization capabilities for UI components, we can fully tailor the Admin Panel to our needs.
+
+Check `./lib/admin.js` file.

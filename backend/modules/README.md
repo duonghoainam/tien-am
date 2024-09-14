@@ -31,24 +31,33 @@ Right in the `modules` directory, we will have the `index.js` file.
 This is where we import all the routes defined in the use-cases into the application.
 
 ```js
-const <<use-case_name>>Router = require(
-  "./<<use-case_name>>/<<use-case_name>>.route"
-);
+import <<use-case_name>>Router from './<<use-case_name>>/<<use-case_name>>.route.js';
+import express from 'express';
 
-module.exports = {
-  <<use-case_name>>Router
-}
+const subApp = express();
+
+subApp.use(<<use-case_name>>Router);
+```
+
+In addition, we have the `adminModel.js` file,
+which is where we export the models for the use-cases that need to be registered on
+the admin panel of the [AdminJs](https://docs.adminjs.co/installation/plugins/express) library.
+
+```js
+import <<Use-case>> from "./<<use-case>>/<<use-case>>.model.js";
+
+export { <<Use-case>> }
 ```
 
 At the same level as the `modules` directory, locate the `app.js` file and load it into the Express application.
 
 ```js
-const { app } = require('./lib');
-const { <<use-case_name>>Router } = require('./modules');
+import { app } from './lib/index.js';
+import subApp from './modules/index.js';
 
-app.use(<<use-case_name>>Router);
+app.use('/api/v1', subApp);
 
-module.exports = app;
+export default app;
 ```
 
 **We have a directory named `base` inside the `modules`, which contains functions/modules that can be reused for other use cases. You should check whether the feature you are about to work on needs to use these features to avoid creating duplicate code.**
@@ -64,7 +73,7 @@ Regular functions:
 
 ```js
 async function <<action>>Handler(req, res) {
-  res.send("data")
+  res.send("data");
 }
 ```
 
@@ -72,7 +81,7 @@ Arrow functions:
 
 ```js
 <<action>>Handler = async (req, res) => {
-  res.send("data")
+  res.send("data");
 }
 ```
 
@@ -87,7 +96,6 @@ In cases where the name is too long to describe, use a shorter name and add a de
 Refer to [JSDoc](https://jsdoc.app/howto-commonjs-modules) for guidance.
 
 ```js
-
 /**
  * Do something.
  * @param {string} field1 - The first field.
@@ -108,7 +116,7 @@ this will be the place where the schema for that entity is defined (including ne
 This is also where the hooks of this object are defined.
 
 ```js
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const <<entity>>Schema = new Schema(
@@ -125,7 +133,7 @@ const <<entity>>Schema = new Schema(
 
 const <<Entity>> = mongoose.model('<<Entity>>', <<entity>>Schema);
 
-module.exports = <<Entity>>;
+export default <<Entity>>;
 ```
 
 ### Route
@@ -136,10 +144,10 @@ Routes must adhere to **OpenAPI** standards.
 Because we use [Swagger Autogen](https://github.com/swagger-autogen/swagger-autogen) to automatically read the existing routes in Express and generate the Swagger UI.
 
 ```js
-const { Router } = require('express');
-const controller = require('./<<use-case_name>>.controller');
+import { Router } from 'express';
+import * as controller from './<<use-case_name>>.controller.js';
 
-const router = Router()
+const router = Router();
 
 router.route('/<<use-case_name_plural>>')
   .get((req, res, next) => {
@@ -212,7 +220,7 @@ Enums should be created using the `Object.freeze` function, with the Enum name f
 The keys of the enum should be written in all uppercase.
 
 ```js
-const <<enum_name>>Enum = Object.freeze({
+export const <<enum_name>>Enum = Object.freeze({
   ENUM1: 'enum1',
   ENUM2: 'enum2',
 });
@@ -224,7 +232,7 @@ Constants are used to define values that do not change throughout the applicatio
 Their names should be written in all uppercase and follow the snake_case convention.
 
 ```js
-const CONSTANT_VARIABLE = "constant variable"
+export const CONSTANT_VARIABLE = "constant variable"
 ```
 
 ## Example
@@ -245,20 +253,58 @@ Inside user use-case:
 Now, import user route into `index.js` file:
 
 ```js
-const userRouter = require("./user/user.route");
+import userRouter from './user/user.route.js';
+import express from 'express';
 
-module.exports = {
-  userRouter
-}
+const subApp = express();
+
+subApp.use(userRouter);
+
+export default subApp;
 ```
+
+If it needs to be interacted with on the Admin Panel,
+export it in `adminModel.js` and add it to the resources of AdminJS.
+
+```js
+import User from "./user/user.model.js";
+
+export { User }
+```
+
+Load it into AdminJS.
+
+```js
+import AdminJS from 'adminjs';
+import AdminJSExpress from '@adminjs/express';
+import * as AdminJSMongoose from '@adminjs/mongoose';
+import * as model from '../modules/adminModel.js';
+
+AdminJS.registerAdapter(AdminJSMongoose);
+
+const admin = new AdminJS({
+  resources: [
+    ...,
+    {
+      resource: model.User,
+    },
+  ]
+});
+
+const adminRouter = AdminJSExpress.buildRouter(admin);
+
+export { admin, adminRouter };
+```
+
 
 Load it into the Express application.
 
 ```js
-const { app } = require('./lib');
-const { userRouter } = require('./modules');
+import { app, adminLib } from './lib/index.js';
+import subApp from './modules/index.js';
 
-app.use(userRouter);
+app.use(subApp);
+app.use(adminLib.instance.options.rootPath, adminLib.router);
 
 module.exports = app;
 ```

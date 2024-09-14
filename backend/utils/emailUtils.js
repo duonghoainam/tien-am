@@ -26,7 +26,7 @@ const normalizeableProviders = {
  * @param {string} eMail
  * @returns {string}
  */
-function normalizeEmail(eMail) {
+export function normalizeEmail(eMail) {
   if (typeof eMail != 'string') {
     throw new TypeError('normalize-email expects a string');
   }
@@ -51,8 +51,4 @@ function normalizeEmail(eMail) {
   }
 
   return username + '@' + domain;
-}
-
-module.exports = {
-  normalizeEmail
 }

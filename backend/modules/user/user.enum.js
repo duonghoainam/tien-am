@@ -1,16 +1,11 @@
-const SocialEnum = Object.freeze({
+export const SocialEnum = Object.freeze({
   GOOGLE: 'google',
   FACEBOOK: 'facebook',
   APPLE: 'apple'
 });
 
-const GenderEnum = Object.freeze({
+export const GenderEnum = Object.freeze({
   MALE: 'male',
   FEMALE: 'female',
   OTHER: 'other'
 });
-
-module.exports = {
-  SocialEnum,
-  GenderEnum
-}

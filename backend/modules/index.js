@@ -1,6 +1,6 @@
-const userRouter = require('./user/user.route');
-const chapterRouter = require('./chapter/chapter.route');
-const express = require('express');
+import userRouter from './user/user.route.js';
+import chapterRouter from './chapter/chapter.route.js';
+import express from 'express';
 
 const subApp = express();
 
@@ -8,4 +8,4 @@ subApp.use(express.json());
 subApp.use(userRouter);
 subApp.use(chapterRouter);
 
-module.exports = subApp;
+export default subApp;

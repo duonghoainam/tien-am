@@ -1,7 +1,6 @@
-const mongoose = require("mongoose");
-const config = require('../config');
-const logger = require("./winston");
-
+import mongoose from "mongoose";
+import config from "../config/index.js";
+import logger from "./winston.js";
 
 /**
  * Connects to the MongoDB database using the URI and database name specified in the configuration.
@@ -51,4 +50,4 @@ mongoose.connection.on('error', (error) => {
   // TODO
 });
 
-module.exports = { connectToDatabase };
+export { connectToDatabase };

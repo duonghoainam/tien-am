@@ -1,9 +1,10 @@
-const swaggerAutogen = require('swagger-autogen')({ openapi: '3.0.0' });
-const { glob, Glob } = require('glob');
-const path = require('path');
-const { swaggerOutputFile, logger } = require('./lib');
-const { capitalizeFirstLetter } = require('./utils/stringUtils');
-const config = require('./config');
+import swaggerAutogen from 'swagger-autogen';
+import { glob } from 'glob';
+import path from 'path';
+import fs from 'fs';
+import { logger, swaggerLib } from './lib/index.js';
+import { capitalizeFirstLetter } from './utils/stringUtils.js';
+import config from './config/index.js';
 
 const swaggerOptions = {
   info: {
@@ -27,13 +28,13 @@ const swaggerOptions = {
     '@schemas': {},
     parameters: {},
   },
+
 };
 
 const routes = ['./app.js'];
 const distDir = './dist';
 
 // create dir if not exist
-var fs = require('fs');
 if (!fs.existsSync(distDir)) {
   fs.mkdirSync(distDir);
 }
@@ -61,12 +62,12 @@ const getParametersFromJoi = (joi2SwaggerSchema, type = 'query') => {
 
 // automatically import use-case dto from modules
 const pattern = './modules/*/*.dto.js';
-const files = new Glob(pattern, { realpath: true });
+const files = glob.sync(pattern, { realpath: true });
 
 logger.info(`Found ${files.length} dto files`);
 
 for (const file of files) {
-  const module = require(path.resolve(file));
+  const module = await import(`./${path.join(path.dirname("."), file)}`);
 
   for (const [key, value] of Object.entries(module)) {
     if (key.endsWith('Swagger')) {
@@ -94,4 +95,4 @@ for (const file of files) {
   }
 }
 
-swaggerAutogen(swaggerOutputFile, routes, swaggerOptions);
+swaggerAutogen({openapi: '3.0.0'})(swaggerLib.swaggerOutputFile, routes, swaggerOptions);

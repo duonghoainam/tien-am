@@ -1,7 +1,11 @@
-const joi = require('joi');
-const j2s = require('joi-to-swagger');
-const { SocialEnum, GenderEnum } = require('./user.enum');
-const config = require('../../config');
+import joi from 'joi';
+import j2s from 'joi-to-swagger';
+import { SocialEnum, GenderEnum } from './user.enum.js';
+
+// const joi = require('joi');
+// const j2s = require('joi-to-swagger');
+// const { SocialEnum, GenderEnum } = require('./user.enum');
+// const config = require('../../config');
 
 //#region ---------- Path Parameter ----------
 //#endregion
@@ -21,7 +25,10 @@ const { swagger: UserCreateBodySwagger } = j2s(UserCreateBody);
 const UserUpdateBody = joi.object().keys({
   fullName: joi.string().optional(),
   email: joi.string().email().optional(),
-  gender: joi.string().valid(...Object.values(GenderEnum)).optional(),
+  gender: joi
+    .string()
+    .valid(...Object.values(GenderEnum))
+    .optional(),
   country: joi.string().optional(),
   lastLogin: joi.date().optional(),
 });
@@ -69,15 +76,14 @@ const { swagger: UserListResponseSwagger } = j2s(UserListResponse);
 //#endregion
 
 //#region ---------- Exports ----------
-module.exports = {
+export {
   UserCreateBody,
   UserCreateBodySwagger,
   UserUpdateBody,
   UserUpdateBodySwagger,
-
   UserResponse,
   UserResponseSwagger,
   UserListResponse,
-  UserListResponseSwagger
+  UserListResponseSwagger,
 };
 //#endregion

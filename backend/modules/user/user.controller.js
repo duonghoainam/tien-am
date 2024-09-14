@@ -1,6 +1,11 @@
-const service = require('./user.service');
-const { BaseQuery, BaseParam } = require('../base/base.dto');
-const { UserCreateBody, UserUpdateBody, UserResponse } = require('./user.dto');
+import * as service from './user.service.js';
+import { BaseQuery, BaseParam } from '../base/base.dto.js';
+import { UserCreateBody, UserUpdateBody, UserResponse } from './user.dto.js'
+import { logger } from '../../lib/index.js';
+
+// const service = require('./user.service');
+// const { BaseQuery, BaseParam } = require('../base/base.dto');
+// const { UserCreateBody, UserUpdateBody, UserResponse } = require('./user.dto');
 
 async function getUsersHandler(req, res, next) {
   try {
@@ -36,7 +41,8 @@ async function createUsersHandler(req, res, next) {
 
     return res.status(201).json(user);
   } catch (error) {
-    if (error.errorResponse.code === 11000) {
+    logger.info(JSON.stringify(error))
+    if (error.errorResponse?.code === 11000) {
       return res.status(409).json({
         message: error.errorResponse.errmsg,
       });
@@ -114,7 +120,7 @@ async function deleteUsersHandler(req, res, next) {
   }
 }
 
-module.exports = {
+export {
   getUsersHandler,
   createUsersHandler,
   getUserByIdHandler,

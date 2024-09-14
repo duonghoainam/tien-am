@@ -1,5 +1,8 @@
-const Chapter = require('./chapter.model');
-const config = require('../../config');
+import Chapter from './chapter.model.js';
+import config from '../../config/index.js';
+
+// const Chapter = require('./chapter.model');
+// const config = require('../../config');
 
 /**
  * Get list chapters of an audio book
@@ -118,7 +121,7 @@ async function deleteChapter(id) {
   return await Chapter.deleteOne({ _id: id });
 }
 
-module.exports = {
+export {
   getChapters,
   createChapter,
   getChapterById,
