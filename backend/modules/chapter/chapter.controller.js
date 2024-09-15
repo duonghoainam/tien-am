@@ -1,11 +1,20 @@
-const chapterService = require('./chapter.service');
-const {
+import * as chapterService from './chapter.service.js';
+import {
   ChapterCreateBody,
   ChapterQuery,
   ChapterResponse,
   ChapterUpdateBody,
-} = require('./chapter.dto');
-const { BaseParam } = require('../base/base.dto');
+} from './chapter.dto.js';
+import { BaseParam } from '../base/base.dto.js';
+
+// const chapterService = require('./chapter.service');
+// const {
+//   ChapterCreateBody,
+//   ChapterQuery,
+//   ChapterResponse,
+//   ChapterUpdateBody,
+// } = require('./chapter.dto');
+// const { BaseParam } = require('../base/base.dto');
 
 async function getChaptersHandler(req, res, next) {
   try {
@@ -48,7 +57,7 @@ async function createChapterHanlder(req, res, next) {
 
     return res.status(201).json(chapter);
   } catch (error) {
-    if (error.errorResponse.code === 11000) {
+    if (error.errorResponse?.code === 11000) {
       return res.status(409).json({
         message: error.errorResponse.errmsg,
       });
@@ -136,7 +145,7 @@ async function deleteChapterHandler(req, res, next) {
   }
 }
 
-module.exports = {
+export {
   getChapterByIdHandler,
   getChaptersHandler,
   createChapterHanlder,

@@ -1,5 +1,5 @@
-const swaggerUi = require('swagger-ui-express');
+import swaggerUi from 'swagger-ui-express';
 
 const swaggerOutputFile = './dist/swagger-output.json';
 
-module.exports = { swaggerUi, swaggerOutputFile }
+export { swaggerUi, swaggerOutputFile }

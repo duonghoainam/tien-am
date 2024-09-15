@@ -1,5 +1,5 @@
-const { Router } = require('express');
-const chapterController = require('./chapter.controller');
+import { Router } from 'express';
+import * as chapterController from './chapter.controller.js';
 
 const router = Router();
 
@@ -112,4 +112,4 @@ router
     next();
   }, chapterController.deleteChapterHandler);
 
-module.exports = router;
+export default router;

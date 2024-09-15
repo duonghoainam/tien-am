@@ -1,6 +1,10 @@
-const joi = require('joi');
-const j2s = require('joi-to-swagger');
-const { BaseQuery } = require('../base/base.dto');
+import joi from 'joi';
+import j2s from 'joi-to-swagger';
+import { BaseQuery } from '../base/base.dto.js';
+
+// const joi = require('joi');
+// const j2s = require('joi-to-swagger');
+// const { BaseQuery } = require('../base/base.dto');
 
 //#region ---------- Path Parameter ----------
 //#endregion
@@ -15,17 +19,17 @@ const { swagger: ChapterQuerySwagger } = j2s(ChapterQuery);
 //#region ---------- Body ----------
 const ChapterCreateBody = joi.object().keys({
   title: joi.string().required(),
-  audioBookId: joi.string().required(),
+  audioBookId: joi.string().hex().length(24).required(),
   duration: joi.number().optional(),
-  audioId: joi.string().optional(),
+  audioId: joi.string().hex().length(24).required(),
 });
 const { swagger: ChapterCreateBodySwagger } = j2s(ChapterCreateBody);
 
 const ChapterUpdateBody = joi.object().keys({
   title: joi.string().optional(),
-  audioBookId: joi.string().optional(),
+  audioBookId: joi.string().hex().length(24).required(),
   duration: joi.number().optional(),
-  audioId: joi.string().optional(),
+  audioId: joi.string().hex().length(24).required(),
   chapterIndex: joi.number().optional(),
 });
 const { swagger: ChapterUpdateBodySwagger } = j2s(ChapterUpdateBody);
@@ -44,7 +48,7 @@ const { swagger: ChapterListResponseSwagger } = j2s(ChapterListResponse);
 //#endregion
 
 //#region ---------- Exports ----------
-module.exports = {
+export {
   ChapterQuery,
   ChapterQuerySwagger,
 
