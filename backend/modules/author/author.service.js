@@ -1,6 +1,6 @@
-const Author = require('./author.model');
-const config = require('../../config');
-const stringUtils = require('../../utils/stringUtils');
+import Author from './author.model.js';
+import config from '../../config/index.js';
+import { generateSlug } from '../../utils/stringUtils.js';
 
 /**
  * Get list authors
@@ -19,7 +19,7 @@ async function getAuthors(
   const filters = {
     $or: [
       { name: { $regex: search, $options: 'i' } },
-      { slug: { $regex: stringUtils.generateSlug(search), $options: 'i' } },
+      { slug: { $regex: generateSlug(search), $options: 'i' } },
     ],
   };
 
@@ -40,7 +40,7 @@ async function getAuthors(
  * @returns {Promise<Author>}
  */
 async function createAuthor(name) {
-  const slug = stringUtils.generateSlug(name);
+  const slug = generateSlug(name);
 
   const author = await Author.create({
     name,
@@ -73,7 +73,7 @@ async function updateAuthor(id, name) {
   const payload = {};
   if (name) {
     payload['name'] = name;
-    payload['slug'] = stringUtils.generateSlug(name);
+    payload['slug'] = generateSlug(name);
   }
 
   const author = await Author.findOneAndUpdate(
@@ -95,10 +95,4 @@ async function deleteAuthor(id) {
   return await Author.deleteOne({ _id: id });
 }
 
-module.exports = {
-  getAuthorById,
-  getAuthors,
-  createAuthor,
-  updateAuthor,
-  deleteAuthor,
-};
+export { getAuthorById, getAuthors, createAuthor, updateAuthor, deleteAuthor };

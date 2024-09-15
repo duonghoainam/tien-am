@@ -33,9 +33,7 @@ const admin = new AdminJS({
               if (request?.payload?.password) {
                 request.payload = {
                   ...request.payload,
-                  encryptedPassword: await hashText(
-                    request.payload.password
-                  ),
+                  encryptedPassword: await hashText(request.payload.password),
                   password: undefined,
                 };
               }
@@ -47,6 +45,9 @@ const admin = new AdminJS({
     },
     {
       resource: model.Chapter,
+    },
+    {
+      resource: model.Author,
     },
   ],
   rootPath: '/admin', // Path to the AdminJS dashboard.
