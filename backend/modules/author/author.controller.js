@@ -1,10 +1,6 @@
-const authorService = require('./author.service');
-const { BaseQuery, BaseParam } = require('../base/base.dto');
-const {
-  AuthorCreateBody,
-  AuthorUpdateBody,
-  AuthorResponse,
-} = require('./author.dto');
+import * as authorService from './author.service.js';
+import { BaseQuery, BaseParam } from '../base/base.dto.js';
+import { AuthorCreateBody, AuthorUpdateBody } from './author.dto.js';
 
 async function getAuthorsHandler(req, res, next) {
   try {
@@ -122,7 +118,7 @@ async function deleteAuthorHandler(req, res, next) {
   }
 }
 
-module.exports = {
+export {
   getAuthorByIdHandler,
   getAuthorsHandler,
   createAuthorHandler,

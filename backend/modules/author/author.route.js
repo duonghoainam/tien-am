@@ -1,5 +1,5 @@
-const { Router } = require('express');
-const controller = require('./author.controller');
+import { Router } from 'express';
+import * as authorController from './author.controller.js';
 
 const router = Router();
 
@@ -28,7 +28,7 @@ router
         }
     } */
     next();
-  }, controller.getAuthorsHandler)
+  }, authorController.getAuthorsHandler)
   .post((req, res, next) => {
     /* #swagger.tags = ['Author'] */
     /*  #swagger.requestBody = {
@@ -53,7 +53,7 @@ router
       }
     */
     next();
-  }, controller.createAuthorHandler);
+  }, authorController.createAuthorHandler);
 
 router
   .route('/authors/:id')
@@ -70,7 +70,7 @@ router
       }
     */
     next();
-  }, controller.getAuthorByIdHandler)
+  }, authorController.getAuthorByIdHandler)
   .patch((req, res, next) => {
     /* #swagger.tags = ['Author'] */
     /*  #swagger.requestBody = {
@@ -95,7 +95,7 @@ router
       }
     */
     next();
-  }, controller.updateAuthorHandler)
+  }, authorController.updateAuthorHandler)
   .delete((req, res, next) => {
     /* #swagger.tags = ['Author'] */
     /* #swagger.responses[200] = {
@@ -109,6 +109,6 @@ router
       }
     */
     next();
-  }, controller.deleteAuthorHandler);
+  }, authorController.deleteAuthorHandler);
 
-module.exports = router;
+export default router;

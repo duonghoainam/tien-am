@@ -1,5 +1,5 @@
-const joi = require('joi');
-const j2s = require('joi-to-swagger');
+import joi from 'joi';
+import j2s from 'joi-to-swagger';
 
 //#region ---------- Path Parameter ----------
 //#endregion
@@ -33,12 +33,11 @@ const { swagger: AuthorListResponseSwagger } = j2s(AuthorListResponse);
 //#endregion
 
 //#region ---------- Exports ----------
-module.exports = {
+export {
   AuthorCreateBody,
   AuthorCreateBodySwagger,
   AuthorUpdateBody,
   AuthorUpdateBodySwagger,
-
   AuthorResponse,
   AuthorResponseSwagger,
   AuthorListResponse,
