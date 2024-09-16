@@ -1,8 +1,0 @@
-{
-  "watch": [
-    "modules", "lib", "config", "utils", "index.js", "app.js", "swagger.js"
-  ],
-  "events": {
-    "restart": "node swagger.js"
-  }
-}
