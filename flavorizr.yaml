@@ -1,0 +1,15 @@
+flavors:
+  dev:
+    app:
+      name: "Tiên Âm dev"
+    android:
+      applicationId: "com.example.tien_am.dev"
+    ios:
+      bundleId: "com.example.tien_am.dev"
+  prod:
+    app:
+      name: "Tiên Âm"
+    android:
+      applicationId: "com.example.tien_am"
+    ios:
+      bundleId: "com.example.tien_am"
