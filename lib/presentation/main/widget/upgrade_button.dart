@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tien_am/core/constants/strings.dart';
 import 'package:tien_am/core/ui/styles/styles.dart';
 import 'package:tien_am/core/ui/widget/widget.dart';
 
@@ -8,9 +9,10 @@ class UpgradeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppButton(
-      title: 'Nâng cấp',
+      label:  AppStrings.labelUpgrade,
       titleColor: AppColors.white,
       onPressed: () {
+
       },
     );
   }

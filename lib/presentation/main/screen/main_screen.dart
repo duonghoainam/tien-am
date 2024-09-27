@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:tien_am/core/constants/strings.dart';
 import 'package:tien_am/core/ui/styles/colors.dart';
 import 'package:tien_am/presentation/main/widget/app_nav_bar.dart';
@@ -30,7 +31,7 @@ class MainScreen extends StatelessWidget {
             ),
           ),
           child: AppNavBar(
-            items: const [
+            items:  const [
               BottomNavigationBarItem(
                 label: AppStrings.labelExplore,
                 icon: Icon(
@@ -43,28 +44,28 @@ class MainScreen extends StatelessWidget {
               BottomNavigationBarItem(
                 label: AppStrings.labelSearch,
                 icon: Icon(
-                  Icons.search,
+                  OctIcons.search,
                 ),
                 activeIcon: Icon(
-                  Icons.search,
+                  OctIcons.search,
                 )
               ),
               BottomNavigationBarItem(
                 label: AppStrings.labelLibrary,
                 icon: Icon(
-                  Icons.library_add,
+                  FontAwesome.bookmark,
                 ),
                 activeIcon: Icon(
-                  Icons.library_add,
+                  FontAwesome.bookmark,
                 )
               ),
               BottomNavigationBarItem(
                 label: AppStrings.labelChallenge,
                 icon: Icon(
-                  Icons.library_add,
+                  FontAwesome.flag,
                 ),
                 activeIcon: Icon(
-                  Icons.library_add,
+                  FontAwesome.flag,
                 )
               ),
             ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tien_am/core/ui/styles/text_style.dart';
 
 abstract final class AppText {
   static Text bold(
@@ -9,10 +10,10 @@ abstract final class AppText {
   }) =>
       Text(
         data,
-        style: GoogleFonts.poppins(
+        style: AppTextStyles.base(
           fontSize: fontSize.size,
           fontWeight: FontWeight.bold,
-          color: textColor,
+          textColor: textColor,
         ),
       );
 
@@ -23,10 +24,10 @@ abstract final class AppText {
   }) =>
       Text(
         data,
-        style: GoogleFonts.poppins(
+        style: AppTextStyles.base(
           fontSize: fontSize.size,
           fontWeight: FontWeight.normal,
-          color: textColor,
+          textColor: textColor,
         ),
       );
 
@@ -37,10 +38,10 @@ abstract final class AppText {
   }) =>
       Text(
         data,
-        style: GoogleFonts.poppins(
+        style: AppTextStyles.base(
+          textColor: textColor,
           fontSize: fontSize.size,
           fontWeight: FontWeight.w500,
-          color: textColor,
         ),
       );
 }

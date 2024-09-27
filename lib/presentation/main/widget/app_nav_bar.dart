@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:tien_am/core/ui/styles/styles.dart';
 
 class AppNavBar extends StatefulWidget {
   final List<BottomNavigationBarItem> items;
@@ -31,15 +32,19 @@ class _AppNavBarState extends State<AppNavBar> {
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
         ),
         color: Colors.white.withOpacity(
-          0.3,
+          0.95,
         ),
+
       ),
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        filter: ImageFilter.blur(
+          sigmaX: 10,
+          sigmaY: 10,
+        ),
         child: BottomNavigationBar(
           elevation: 0,
           onTap: widget.onTap,
@@ -48,6 +53,7 @@ class _AppNavBarState extends State<AppNavBar> {
           backgroundColor: Colors.transparent,
           iconSize: 20,
           items: items,
+          selectedItemColor: AppColors.orange,
         ),
       ),
     );
