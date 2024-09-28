@@ -5,19 +5,20 @@ class AppTitle extends StatelessWidget {
   final String title;
   final Widget? icon;
   final Color? titleColor;
+  final FontSizes titleSize;
 
-  const AppTitle(
-    this.title, {
+  const AppTitle(this.title, {
     super.key,
     this.icon,
     this.titleColor,
+    this.titleSize = FontSizes.medium,
   });
 
   @override
   Widget build(BuildContext context) {
     Widget titleWidget = AppText.base(
       title,
-      fontSize: FontSizes.medium,
+      fontSize: titleSize,
       textColor: titleColor,
     );
     if (icon != null) {

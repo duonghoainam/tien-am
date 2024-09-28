@@ -16,15 +16,16 @@ abstract final class AppColors {
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     stops: [
-      .1,
-      .9,
+      0,
+      .6,
     ],
     colors: [
-      Colors.blueGrey,
-      Colors.white,
+      purple,
+      white,
     ],
   );
 
+  static const Color purple = Color(0xff2D3C5B);
   static const Color peach = Color(0xFFf07971);
   static const Color white = Color(0xffffffff);
   static const Color black = Color(0xff000000);

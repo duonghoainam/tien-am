@@ -21,5 +21,10 @@ abstract final class AppStrings {
 
   static const String labelFree = 'Miễn phí';
 
-  static const String placeHolder='Hello world';
+  static const String placeHolder = 'Hello world';
+
+  static const String titleCancel = 'Huỷ';
+
+  static const String hintSearch='Tìm sách, tác giả,...';
+
 }

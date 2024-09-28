@@ -9,15 +9,18 @@ class HomeBookCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 45,
-      child: ListView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 4,
-        ),
-        scrollDirection: Axis.horizontal,
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 4,
+      ),
+      scrollDirection: Axis.horizontal,
+      child: Row(
         children: [
+          AppChip(
+            onPressed: () {},
+            title: AppStrings.placeHolder,
+          ),
           AppChip(
             onPressed: () {},
             title: AppStrings.placeHolder,

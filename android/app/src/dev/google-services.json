@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "151544755220",
+    "project_id": "tinyin-7ef68",
+    "storage_bucket": "tinyin-7ef68.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151544755220:android:69d18ead285477e2dfa301",
+        "android_client_info": {
+          "package_name": "vn.tinyin.tien_am"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "151544755220-cv6c5tei5k3741m5rpposlj0ijmamde4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDovTP65BacKIVJeminCuZSOovIkDgmWIU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "151544755220-cv6c5tei5k3741m5rpposlj0ijmamde4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

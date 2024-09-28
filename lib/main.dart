@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -11,9 +12,9 @@ import 'package:tien_am/core/ui/styles/styles.dart';
 
 void main() async {
   runZonedGuarded(
-    () {
+    () async {
       WidgetsFlutterBinding.ensureInitialized();
-
+      await Firebase.initializeApp();
 
       runApp(
         const ProviderScope(

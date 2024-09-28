@@ -9,6 +9,7 @@ import 'package:tien_am/presentation/home/widget/books_carousel.dart';
 import 'package:tien_am/presentation/home/widget/home_book_categories.dart';
 import 'package:tien_am/presentation/home/widget/home_books_list.dart';
 import 'package:tien_am/presentation/home/widget/home_section_title.dart';
+import 'package:tien_am/presentation/main/widget/app_bar.dart';
 import 'package:tien_am/presentation/main/widget/upgrade_button.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -20,43 +21,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverAppBar(
-          pinned: true,
-          backgroundColor: Colors.transparent,
-          centerTitle: false,
-          automaticallyImplyLeading: false,
-          surfaceTintColor: Colors.blueGrey,
-          flexibleSpace: ClipRect(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 7, sigmaY: 7),
-              child: Container(
-                color: Colors.transparent,
-              ),
-            ),
-          ),
-          title: const AppTitle(
-            AppStrings.appName,
-            titleColor: AppColors.white,
-            icon: FlutterLogo(
-              size: 30,
-            ),
-          ),
-
-          actions: [
-            const UpgradeButton(),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 8.0,
-              ),
-              child: AppIconButton(
-                backgroundColor: AppColors.lightGrey,
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.person_2_outlined,
-                ),
-              ),
-            )
-          ],
+        const GeneralAppBar(
+          title: AppStrings.appName,
+          showLogo: true,
         ),
         SliverList.list(
           children: [
