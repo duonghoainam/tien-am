@@ -11,6 +11,7 @@ class GeneralAppBar extends StatelessWidget {
   final bool showLogo;
   final String title;
   final bool showBlur;
+  final bool pinned;
 
   const GeneralAppBar({
     super.key,
@@ -18,12 +19,13 @@ class GeneralAppBar extends StatelessWidget {
     this.showLogo = false,
     this.showBlur = true,
     required this.title,
+    this.pinned = true,
   });
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      pinned: true,
+      pinned: pinned,
       backgroundColor: Colors.transparent,
       centerTitle: false,
       automaticallyImplyLeading: false,
@@ -31,7 +33,7 @@ class GeneralAppBar extends StatelessWidget {
       bottom: bottom == null
           ? null
           : PreferredSize(
-              preferredSize: const Size.fromHeight(80),
+              preferredSize: const Size.fromHeight(55),
               child: bottom!,
             ),
       flexibleSpace: showBlur

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class AppScaleWidget extends StatefulWidget {
   final Widget child;
-  final VoidCallback onTap;
+  final VoidCallback onPressed;
 
   const AppScaleWidget({
     super.key,
     required this.child,
-    required this.onTap,
+    required this.onPressed,
   });
 
   @override
@@ -69,7 +69,7 @@ class _InteractiveScaleWidgetState extends State<AppScaleWidget>
       child: GestureDetector(
         onTapDown: _handleTapDown,
         onTapUp: _handleTapUp,
-        onTap: widget.onTap,
+        onTap: widget.onPressed,
         onTapCancel: () => _animationController.reverse(),
         child: ScaleTransition(
           scale: _scaleAnimation, // Hiệu ứng scale

@@ -1,10 +1,12 @@
+import 'package:equatable/equatable.dart';
+
 abstract class BaseQuery {
   const BaseQuery();
 
   Map<String, dynamic> toMap();
 }
 
-class PaginationQuery extends BaseQuery {
+class PaginationQuery extends BaseQuery with EquatableMixin {
   final int page;
   final int limit;
 
@@ -20,6 +22,12 @@ class PaginationQuery extends BaseQuery {
       'size': limit,
     };
   }
+
+  @override
+  List<Object?> get props => [
+        page,
+        limit,
+      ];
 }
 
 class PaginationWithSearchQuery extends PaginationQuery {

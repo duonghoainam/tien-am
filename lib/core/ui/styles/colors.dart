@@ -37,4 +37,5 @@ abstract final class AppColors {
   static const Color lightGreen = Colors.greenAccent;
 
   static const Color lightPink = Color(0xffEAD8D9);
+  static const Color lightBlue = Color(0xffF3F8FC);
 }
